@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+	<title>Document</title>
+
+
+</head>
+<body>
+	
+	<div id="root"></div>
+
+	<!-- 바벨을 사용함에 따라 자바스크립트 안에서 html 문법을 사용할 수 있다 <button> 처럼 태그를 써서 스크립트를 작성할 수 있다 -->
+	<script type="text/babel">
+
+		const e = React.createElement;
+		
+		class LikeButton extends React.Component{
+			constructor(props){
+				super(props);
+				this.state={
+					linked:false
+				};
+			}
+			//render(){
+			//	return e('button',null,'Like'); // <button>like</button>   
+			//}
+
+			render(){
+				return <button 
+					type="submit" 
+					onClick={()=>{this.setState({liked : true})}}> {this.state.liked === true ? 'linked' : 'like'} </button>
+				//JSX (JS+XML)
+				
+				// 코드 가독성 떨어짐
+				//return e('button',{onClick:()=>{
+				//					this.setState({linked :true}); 
+				//					console.log('clicked')
+				//				},
+				//					type:'submit'}
+				//				, this.state.linked === true ? 'liked' : 'Like');
+									
+									
+				//<button onclick="{console.log('clicked')}" type="submit">like</button>
+			}
+		}
+
+	</script>
+
+	<script type="text/babel">
+		ReactDOM.render(<div><LikeButton /><LikeButton /><LikeButton /><LikeButton /></div>,document.querySelector("#root"));
+		//ReactDOM.render(e(LikeButton),document.querySelector("#root"));
+	</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<title>Document</title>
+</head>
+<body>
+	<div id="root"></div>
+	<script type="text/babel">
+		class GuGuDan extends React.Component{
+			constructor(props){
+				super(props);
+				this.state={
+					first : '',
+					second : '',
+					result : ''
+				}
+			}
+
+			firstOnChange=(e)=>{
+				this.setState({
+					first : e.target.value
+					
+				})
+			}
+
+			secondOnChange=(e)=>{
+				this.setState({
+					second:e.target.value
+				})
+			}
+
+			onSubmit=(e)=>{
+				e.preventDefault();
+				console.log("ffffFf");
+				this.setState({
+					result : parseInt(this.state.first)*parseInt(this.state.second)
+				})
+			}
+
+
+			render(){
+				return(
+					<React.Fragment>
+						<form onSubmit={this.onSubmit}>
+							<input type="number" value ={this.state.first} onChange = {this.firstOnChange}/> 	
+							<input type="number" value ={this.state.second} onChange = {this.secondOnChange}/>
+							<button type ="submit" >누름</button>
+						</form>
+						
+						<div>{this.state.result} {this.state.second}</div>
+					</React.Fragment>
+					
+				)
+			}
+		
+		}
+		
+	</script>
+	<script type="text/babel">
+		ReactDOM.render(<GuGuDan/>, document.querySelector("#root"));
+	</script>
+</body>
+</html>
