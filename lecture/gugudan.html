@@ -23,7 +23,7 @@
 			}
 			
 			onSubmit=(e)=>{
-				console.log(this.value);
+	
 				e.preventDefault();
 				if(parseInt(this.state.value)===parseInt(this.state.first*this.state.second)){
 					this.setState({
@@ -38,6 +38,8 @@
 						result : "땡",
 						value : ''
 					})
+
+					this.input.focus();
 				}	
 			
 			};
@@ -47,7 +49,10 @@
 				console.log(this.state.value);
 			};
 
-		
+			// ref 포커스에 관한 것
+			infocus=(e)=>{
+				this.input=e;
+			};
 
 			render(){
 				return (
@@ -55,7 +60,8 @@
 						<div>{this.state.first}곱하기 {this.state.second} 는 ?</div>
 					
 						<form onSubmit={this.onSubmit}>
-							<input type="number" value={this.state.value} 
+											
+							<input ref={this.focus} type="number" value={this.state.value} 
 								onChange={this.onChange}/>
 							<button > 입력 !</button>	
 						</form>

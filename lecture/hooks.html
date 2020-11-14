@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<title>GUGUDAN - Hooks Ver</title>
+
+</head>
+<body>
+	<div id="root"></div>
+
+
+	<script type="text/babel">
+		const GuGuDan =() =>{
+			// 구조분해 첫번째 [state, setState 와 같다
+			const[first, setFirst] = React.useState(Math.ceil(Math.random()*9));
+			const[second, setSecond] = React.useState(Math.ceil(Math.random()*9));
+			const[value, setValue] = React.useState('');
+			const[result, setResult] = React.useState('');
+
+			//아래와 같이 선언할수 있으나 쓰지 않는다
+			// 1. 함수에서 state 값을 바꿀때, 개별로 하지 못하고, 통째로 바꿔줘야한다.
+			// 2. this.state 라는 문구를 넣어줘야 하기 때문에 코드가 길어진다. 
+
+			// 1번 예시
+			//const onSubmit = (e) =>{
+			//	e.preventDefault();
+			//	if(parseInt(value)===first*second){
+			//		setState({
+			//		result("정답"+value);
+			//		first(Math.ceil(Math.random()*9));
+			//		second(Math.ceil(Math.random()*9));
+			//		value("");
+			//			})
+			//		inputRef.current.focus();
+			//	}else{
+			// 		setState({
+			//		setResult("땡땡");
+			//		setValue("");
+			//		})
+			//		inputRef.current.focus();
+			//	}
+			//}
+
+
+
+			//const[state, setState] = React.useState({
+			//	first : Math.ceil(Math.random()),
+			//	second : Math.ceil(Math.radom()),
+			//	value : '',
+			//	result : '',
+			//})
+
+
+			const inputRef = React.useRef(null);
+
+			const onChangeInput = (e) =>{
+				setValue(e.target.value);
+			}
+
+			const onSubmit = (e) =>{
+				e.preventDefault();
+				if(parseInt(value)===first*second){
+					setResult((prevResult)=>{
+						return "정답"+value
+					});
+					setFirst(Math.ceil(Math.random()*9));
+					setSecond(Math.ceil(Math.random()*9));
+					setValue("");
+					inputRef.current.focus();
+				}else{
+					setResult("땡땡");
+					setValue("");
+					inputRef.current.focus();
+				}
+			}
+			// 리엑트에서 html 태그 내 클래스 삽입은
+			// <button className="클래스 이름"  htmlFor="라벨속성"> 이렇게 입력해줄수 있다.
+			return (
+				<React.Fragment>
+					<div>{first} 곱하기 {second}</div> 
+					<form onSubmit={onSubmit}>
+						<input type="number" ref={inputRef} onChange={onChangeInput} value ={value}/> 
+						
+						<button> 입력 </button>
+						<div id="result"> {result}</div>
+					</form>
+				</React.Fragment>
+			)
+
+		}
+	
+	</script>
+		
+	<script type="text/babel">
+		ReactDOM.render(<GuGuDan/>, document.querySelector("#root"));
+	</script>
+</body>
+</html>
