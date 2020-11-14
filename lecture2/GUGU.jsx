@@ -3,7 +3,7 @@ const {Component} = React;
 // const {Component} = React 이 것때문에 아래 처럼 줄일수 있음
 // class WordReplay extends React.Component{
 
-const WordRelay = ()=>{
+const GUGU = ()=>{
 	const [first, setFirst] = React.useState(Math.ceil(Math.random()*9));
 	const [second, setSecond] = React.useState(Math.ceil(Math.random()*9));
 	const [result, setResult] = React.useState('');
@@ -42,4 +42,4 @@ const WordRelay = ()=>{
 
 }
 
-module.exports=WordRelay;
+module.exports=GUGU;
