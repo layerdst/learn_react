@@ -1,0 +1,12 @@
+require import 차이
+import, require 도 호환이 된다.
+
+require 는 스크립트 내 클래스 호출
+{ } 구조분해 문법은 
+
+export const hello = "hoo"; // import {hello}
+export const bye = "he" ; import{hello, bye} 
+
+
+export default NumberbaseBall // import NumberbaseBall 
+
