@@ -2,7 +2,16 @@ require import 차이
 import, require 도 호환이 된다.
 
 require 는 스크립트 내 클래스 호출
-{ } 구조분해 문법은 
+{ } 구조분해 문법은 아래와 같이 default 가 아닌 일반 변수를 export 할때 쓰일수 있으며
+
+import 는 React 에서 
+require 는 Node 에서 
+자바 스크립트를 불러오는 역할을 함
+
+webpack은 노드에서 실행이 되기 때문에
+require를 써야함. React 에서는 import 를 쓰는게 맞지만 
+babel이 호환을 시켜줌
+
 
 export const hello = "hoo"; // import {hello}
 export const bye = "he" ; import{hello, bye} 
