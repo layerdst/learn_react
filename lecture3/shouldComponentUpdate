@@ -1,0 +1,39 @@
+
+Component 는 state가 변경될때마다, 렌더링 되어야하나, 
+react 는 prevstate 와 setstate 의 값이 같다고 하더라도
+무조건 바뀌게 되어있다.
+
+그래서 ShouldComponentUpdate 와 PureComponent 를 사용하여,
+이전의 prevstate 값과 setstate 값을 비교하여 렌더링 여부를 파악한다.
+
+ShouldComponentUpdate 는 state 의 기준을 둘수 있으며
+
+ShoudComponentUpdate(nextProps, nextState, nextContext){
+	if(this.state.count !== nextState.count){
+		return true;
+	}
+	return false;
+}
+A->B->C ->D->E->G 이런 관계에 있어서 props가 a부터 g 까지 전달되어야 하는데 
+렌더링이 계속되게 된다. 여기서 context 는 A->G 바로 props 를 적용할수 있는 개념이다. 
+
+PureComponent 클래스에서는 상속받아 사용가능하다 
+string, number, boolean 값은 비교하여 렌더링 여부를 파악할수 있으나,
+array 나 obejct 들은 push나 setter 로 state를 변경하게 되면 인식을 못하니
+
+
+
+array = [...this.state.array, "변경값" ]
+object = {...this.state.Object, 변경값}
+
+이렇게 해주어야 한다. 
+
+
+Hooks 에서는 PureComponent , ShouldComponentUpdate 를 쓸수가 없는데
+
+Hooks는 memo 라는걸 쓰게 되고, props, state가 바뀌었을때 렌더링이 되게끔 만든다
+
+
+const try = memo({tryInfo}) =>{
+
+}
