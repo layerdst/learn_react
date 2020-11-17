@@ -31,14 +31,25 @@ const ResponseCheckHook =()=>{
 			endTime.current = new Date();
 			setState("waiting");
 			setMessage("클릭하세요");
-			setResult((prevResut)=>{
-				return [...prevResut, endTime.current = startTime.current]
+			setResult((prevResult)=>{
+				return [...prevResult, endTime.current = startTime.current]
 			})
 		}
 	}
 
 	const onReset = (e)=>{
 		setResult([]);
+	}
+
+	const avgTime =()=>{
+		return result.length===0
+		? null 
+		: <>
+			<div>경과시간 : {result.reduce((a,c)=>a+c) /result.length} </div>
+			<button onClick={onReset}>리셋</button>
+			</>
+
+
 	}
 
 	return (
@@ -48,7 +59,7 @@ const ResponseCheckHook =()=>{
 			className = {state}
 			onClick={onClickScreen}
 			></div>
-
+			
 			<div>
 				{avgTime}
 			</div>
