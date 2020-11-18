@@ -16,6 +16,9 @@ const score ={
 	보 : 1
 }
 
+const computerChoice = (imgCoord) =>{
+	return 
+}
 
 class RSP extends React.Component{
 	state ={
@@ -27,10 +30,8 @@ class RSP extends React.Component{
 	interval;
 
 	ComponentDidMount(){ //컴포넌트가 첫 렌더링 된후 비동기 요청을 많이함
-		
-		const {imgCoord} = this.state;
-		
 		this.interval = setInterval(()=>{
+		const {imgCoord} = this.state;
 			if(imgCoord===rspCoords.바위){
 				this.setState({
 					imgCoord : rspCoords.가위
@@ -52,11 +53,33 @@ class RSP extends React.Component{
 	}
 
 	ComponentWillMount(){ //컴포넌트가 제거되기 직전 비동기 요청을 많이함
-
+		clearInterval(this.interval);
 	}
 
 	onClickBtn =(choice)=>{
-
+		clearInterval(this.interval);
+		const myScore = score[choice];
+		const cpuScore = score[computerChoice(imgCoord)];
+		const diff = myScore - cpuScore;
+		if(diff===0){
+			this.setState({
+				result:"비겻습니다"
+			})
+		}else if([-1,2].includes(diff)){
+			this.setState((prevState)=>{
+				return {
+					result : "이겻습니다",
+					score: prevState.score=1
+				}
+			})
+		}else {
+			this.setState((prevState) => {
+				return {
+					result : "졋습니다",
+					score:prevState.score -1
+				}
+			});
+		}
 	}
 
 
