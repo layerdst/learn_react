@@ -1,8 +1,11 @@
 import React,{useCallback, useState} from 'react';
 import {Form} from 'antd';
+import styled from 'styled-components';
 
 
-
+const ButtonWrapper = styled.div`
+	marginTop:10px;
+`
 
 const LoginForm = ()=>{
 	const [id, setId] = useState('');
@@ -31,11 +34,11 @@ const LoginForm = ()=>{
 					onChange={onChangePassword} 
 					required />
 			</div>
-			<div>
+			<ButtonWrapper>
 				<Button type="primary" 
-				htmlType="submit" 
-				loading={false} required>
-				로그인
+					htmlType="submit" 
+					loading={false} required>
+					로그인
 				</Button>
 				<Link href="/signup">
 					<a>
@@ -43,7 +46,7 @@ const LoginForm = ()=>{
 					</a>
 				</Link>
 				
-			</div>
+			</ButtonWrapper>
 				
 		</Form>
 	)
