@@ -1,6 +1,11 @@
-import {Card, Avatar} from 'antd';
+import {Card, Avatar,Button} from 'antd';
+import { useCallback } from 'react';
 
-const UserProfile = ()=>{
+const UserProfile = ({setIsLoggedIn})=>{
+	const onLogOut = useCallback(()=>{
+		setIsLoggedIn(false);
+	},[])
+
 	return(
 		<Card
 			actions={[
@@ -10,6 +15,7 @@ const UserProfile = ()=>{
 			]}
 		>
 			<Card.Meta	title="ZeroCho" avatar={<Avatar>ZC</Avatar>}/>
+			<Button onClick={onLogOut}></Button>
 		</Card>
 	)
 }
