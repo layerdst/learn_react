@@ -14,7 +14,7 @@
 	},
 
 	"extends" :[
-		"eslint:recommend",
+		"eslint:recommended",
 		"plugin:react/recommended"
 	]
 	
